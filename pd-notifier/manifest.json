@@ -16,10 +16,12 @@
         "notifications",
         "background",
         "storage",
-        "alarms"
+        "alarms",
+        "https://*.pagerduty.com/api/v1/*"
     ],
     "background": {
         "scripts": [
+            "lib/socket.io.js",
             "lib/pd-api.js",
             "background/pd-notifier.js"
         ],

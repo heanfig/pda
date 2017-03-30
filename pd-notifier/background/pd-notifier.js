@@ -2,10 +2,21 @@ function PagerDutyNotifier()
 {
 
     self.notifSound = true;
+    self.socketURL = "https://zopp-comisiones.herokuapp.com";
 
     self._construct = function _construct(){
 
-        setInterval(function() {  
+        var socket = io.connect(self.socketURL);
+
+        socket.on('connect', function() {
+            console.warn("connected to socket");
+        });
+
+        socket.on('connect', function() {
+            console.warn("connected to socket");
+        });
+
+        /*setInterval(function() {  
             chrome.notifications.create(
                 'name-for-notification',{   
                 type: 'basic', 
@@ -16,7 +27,7 @@ function PagerDutyNotifier()
             function() {} 
 
             );
-        }, 4000);
+        }, 4000);*/
 
         if (self.notifSound)
         {
@@ -29,16 +40,8 @@ function PagerDutyNotifier()
     self._construct();
 }
 
-/*chrome.runtime.onInstalled.addListener(function(details)
-{
-    if (details.reason == 'install')
-    {
-        chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
-    }
-});*/
 
 var _pdNotifier = null;
-
 function reloadNotifier()
 {
     _pdNotifier = new PagerDutyNotifier();
