@@ -16,22 +16,20 @@ function PagerDutyNotifier()
             console.warn("connected to socket");
         });
 
-        socket.on('notice_comission', function() {     
-                
-                chrome.notifications.create(
-                    'name-for-notification',{   
-                    type: 'basic', 
-                    iconUrl: 'images/icon.png', 
-                    title: "This is a notification", 
-                    message: "hello there!" 
-                    },
-                function() {} 
-                    alert("Hola");
-                );
-
-                //Play Sound
-                var notifSound = new Audio("audio/notification.mp3");
-                notifSound.play();
+        socket.on('notice_comission', function() {                    
+            chrome.notifications.create(
+                'name-for-notification',{   
+                type: 'basic', 
+                iconUrl: 'images/icon.png', 
+                title: "Zopp Digital", 
+                message: "Alguien ha hecho una comisión" 
+                },
+            function() {} 
+                alert("Hola");
+            );
+            //Play Sound
+            var notifSound = new Audio("audio/notification.mp3");
+            notifSound.play();
         });
     }
 
