@@ -14,14 +14,14 @@ function PagerDutyNotifier()
 
         socket.on('notice_comission', function(data) {                
             chrome.notifications.create(
-                    'name-for-notification',{   
+                    data.id_user,{   
                     type: 'basic', 
                     iconUrl: 'images/icon.png', 
                     title: "Zopp Digital", 
                     message: "!WOW! Alguien ha hecho una comisión, click para ver mas" 
                 },
             function(){
-                alert("Hola");      
+                console.warn("Alert");      
             });
             //Play Sound
             var notifSound = new Audio("audio/notification.mp3");
@@ -41,5 +41,8 @@ function reloadNotifier()
 
 //chrome.alarms.onAlarm.addListener(function(alarm) { reloadNotifier(); });
 //chrome.alarms.create("pagerduty-notifier", { periodInMinutes: 1 });
+chrome.notifications.onClicked.addListener(function(notificationId){
+    chrome.tabs.create({url: notificationId});
+});
 
 reloadNotifier();
