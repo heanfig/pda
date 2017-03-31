@@ -12,9 +12,9 @@ function PagerDutyNotifier()
             console.warn("connected to socket");
         });
 
-        socket.on('notice_comission', function(data) {                
+        socket.on('notice_comission', function(data) {         
             chrome.notifications.create(
-                    data.id_user,{   
+                    data.uri,{   
                     type: 'basic', 
                     iconUrl: 'images/icon.png', 
                     title: "Zopp Digital", 
