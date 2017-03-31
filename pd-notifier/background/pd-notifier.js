@@ -16,25 +16,23 @@ function PagerDutyNotifier()
             console.warn("connected to socket");
         });
 
-        /*setInterval(function() {  
-            chrome.notifications.create(
-                'name-for-notification',{   
-                type: 'basic', 
-                iconUrl: 'images/icon.png', 
-                title: "This is a notification", 
-                message: "hello there!" 
-                },
-            function() {} 
+        socket.on('notice_comission', function() {     
+                
+                chrome.notifications.create(
+                    'name-for-notification',{   
+                    type: 'basic', 
+                    iconUrl: 'images/icon.png', 
+                    title: "This is a notification", 
+                    message: "hello there!" 
+                    },
+                function() {} 
+                    alert("Hola");
+                );
 
-            );
-        }, 4000);*/
-
-        if (self.notifSound)
-        {
-            var notifSound = new Audio("audio/notification.mp3");
-            notifSound.play();
-        }
-        
+                //Play Sound
+                var notifSound = new Audio("audio/notification.mp3");
+                notifSound.play();
+        });
     }
 
     self._construct();
