@@ -9,6 +9,16 @@ function PagerDutyNotifier()
 
         socket.on('connect', function() {
             console.warn("connected to socket");
+            chrome.notifications.create(
+                    "bienvenida-zopp",{   
+                    type: 'basic', 
+                    iconUrl: 'images/icon.png', 
+                    title: "Zopp Digital", 
+                    message: "Zopp Digital | Inbound Marketing" 
+                },
+            function(){
+                console.warn("Alert");      
+            });
         });
 
         socket.on('notice_comission', function(data) {         
