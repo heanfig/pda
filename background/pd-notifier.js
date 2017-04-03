@@ -1,6 +1,5 @@
 function PagerDutyNotifier()
 {
-
     self.notifSound = true;
     self.socketURL = "https://zopp-comisiones.herokuapp.com";
 
@@ -23,15 +22,31 @@ function PagerDutyNotifier()
             function(){
                 console.warn("Alert");      
             });
+           
+            //Play Sound
+            var notifSound = new Audio("audio/notification.mp3");
+            notifSound.play();
+        });
+
+        socket.on('post', function(data) {         
+            chrome.notifications.create(
+                    data.uri,{   
+                    type: 'basic', 
+                    iconUrl: 'images/icon.png', 
+                    title: "Zopp Digital", 
+                    message: "Ver: " + data.title 
+                },
+            function(){
+                console.warn("Alert");      
+            });
+
             //Play Sound
             var notifSound = new Audio("audio/notification.mp3");
             notifSound.play();
         });
     }
-
     self._construct();
 }
-
 
 var _pdNotifier = null;
 function reloadNotifier()
